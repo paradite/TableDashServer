@@ -29,15 +29,16 @@ $sql = "INSERT INTO `dashtable`.`eventlog` (`timestamp`, `tag_id`, `user_id`) VA
 
 
 
-
-SELECT `tag_occupied_by_user`.`user_id`, `tag_occupied_by_user`.`timestamp_checkin`
+--checking when the user will end, based on user id
+SELECT `tag_occupied_by_user`.`user_id`, `tag_occupied_by_user`.`timestamp_ending`
 FROM tag_occupied_by_user
 WHERE (`tag_occupied_by_user`.`tag_id` ='test_tag_1')
 
-
+--checking tag id and time ending based for all
 SELECT `tag_occupied_by_user`.`tag_id`, `tag_occupied_by_user`.`timestamp_ending` FROM tag_occupied_by_user, tag_to_table
 
 $sql = "SELECT `tag_occupied_by_user`.`tag_id`, `tag_occupied_by_user`.`timestamp_ending`\n"
     . "FROM tag_occupied_by_user, tag_to_table\n"
     . "\n";
 
+$sql = "UPDATE `dashtable`.`tag_occupied_by_user` SET `timestamp_ending` = \'2014-09-13 16:12:42\' WHERE `tag_occupied_by_user`.`tag_id` = \'test_tag_1\';";
