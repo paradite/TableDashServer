@@ -2,22 +2,26 @@
 include_once "base.php";
 //function checkin(user_id,tag_id,duration)
 
-if (($_SERVER["REQUEST_METHOD"] == "POST") && (!empty($_POST["user_id"]) && (!empty($_POST["tag_id"]))) {
-	$user_id = test_input($_POST["user_id"]);
-	$user_id = strtolower($user_id);*/
-	$tag_id  = test_input($_POST["tag_id"]);
-	$tag_id = strtolower($tag_id);
-	if (!empty($_POST["duration"])
+if (($_SERVER["REQUEST_METHOD"] == "POST") && (!empty($_POST["user_id"])) && (!empty($_POST["tag_id"]))) {
+	//$user_id = strtolower($user_id);
+	$user_id = mysqli_real_escape_string($con, $_POST['user_id']);
+	$tag_id = mysqli_real_escape_string($con, $_POST['tag_id']);
+	echo ($user_id."\n");
+	echo ($tag_id."\n");
+	if (!empty($_POST["duration"]))	
 		$duration = test_input($_POST["duration"]);
 	else $duration = "30";
-	// echo($user_id);
-	$sql = "INSERT INTO `dashtable`.`tag_occupied_by_user` (`tag_id`, `user_id`, `timestamp_checkin`) VALUES (\'test_tag_1\', \'test_user_1\', CURRENT_TIMESTAMP);";
-	$result = mysqli_query($con,$sql);
-	//echo json_encode(new ArrayValue(mysqli_fetch_all($result)), JSON_PRETTY_PRINT);
-	$sql = "INSERT INTO `dashtable`.`eventlog` (`timestamp`, `tag_id`, `user_id`) VALUES (CURRENT_TIMESTAMP, \'test_tag_1\', \'test_user_1\');";
-		. "FROM tag_occupied_by_user, tag_to_table\n";
-	$result = mysqli_query($con,$sql);
-	//echo json_encode(new ArrayValue(mysqli_fetch_all($result)), JSON_PRETTY_PRINT);
+	$sql = "REPLACE `dashtable`.`tag_occupied_by_user` (`tag_id`, `user_id`, `timestamp_checkin`) VALUES ('$tag_id', '$user_id', CURRENT_TIMESTAMP)";
+	if (!mysqli_query($con,$sql)) {
+		die('Error: ' . mysqli_error($con));
+	}
+	echo "1 record added to tag_occupied_by_user\n";
+	//	echo json_encode(new ArrayValue(mysqli_fetch_all($result)), JSON_PRETTY_PRINT);
+	$sql = "REPLACE `dashtable`.`eventlog` (`timestamp`, `tag_id`, `user_id`) VALUES (CURRENT_TIMESTAMP, '$tag_id', '$user_id')";
+	if (!mysqli_query($con,$sql)) {
+		die('Error: ' . mysqli_error($con));
+	}
+	echo "1 record added to eventlog\n";
 }
 
 mysqli_close($con);

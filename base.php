@@ -18,7 +18,7 @@ function test_input($data)
     $data = htmlspecialchars($data);
     return $data;
 }
-
+//$con=mysqli_connect("localhost","tabledash","a2d3fc5a-8087-4cfe-a62e-aae13a4da3d5","dashtable");
 $con=mysqli_connect("localhost","root","","dashtable");
 // Check connection
 if (mysqli_connect_errno()) {
