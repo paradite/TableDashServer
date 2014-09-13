@@ -1,6 +1,6 @@
 <?php
 include_once "base.php";
-//function checkin(user_id,tag_id,duration)
+//function add_tag_table(tag_id,table_id)
 
 $DEBUG = true;
 if (($_SERVER["REQUEST_METHOD"] == "POST") && (!empty($_POST["tag_id"])) && (!empty($_POST["table_id"]))) {

@@ -1,17 +1,21 @@
 <?php
-include_once "base.php";    
+include_once "base.php";
+//function check_vacancy(canteen_id)
 
-if (($_SERVER["REQUEST_METHOD"] == "POST") && (!empty($_POST["canteen_id"]))) {
-    $canteen_id = test_input($_POST["canteen_id"]);
-    $canteen_id = strtolower($canteen_id);
-  */  $canteen_id='test_canteen_1'; //dummy
-  //  echo($canteen_id);
-    $sql = "SELECT `tag_occupied_by_user`.`tag_id`, `tag_occupied_by_user`.`timestamp_ending`\n"
-        . "FROM tag_occupied_by_user, tag_to_table\n";
-    $result = mysqli_query($con,$sql);
-    echo json_encode(new ArrayValue(mysqli_fetch_all($result)), JSON_PRETTY_PRINT);
+if (($_SERVER["REQUEST_METHOD"] == "POST") && (!empty($_POST["$canteen_id"]))) {
+	$canteen_id = mysqli_real_escape_string($con, $_POST['canteen_id']);
+	if (isset($DEBUG) && $DEBUG) echo($canteen_id);
+	$sql = "SELECT `tag_occupied_by_user`.`tag_id`, `tag_to_table`.`table_id`, `tag_occupied_by_user`.`timestamp_ending` 
+FROM `tag_occupied_by_user` 
+INNER JOIN `tag_to_table` 
+ON `tag_to_table`.`tag_id` = `tag_occupied_by_user`.`tag_id` 
+INNER JOIN `table_to_canteen` 
+ON `tag_to_table`.`table_id` = `table_to_canteen`.`table_id` 
+WHERE `canteen_id` = '$canteen_id'";
+	$result = mysqli_query($con,$sql);
+	echo json_encode(new ArrayValue(mysqli_fetch_all($result)), JSON_PRETTY_PRINT);
 }
-
+include "log_activity.php";
 mysqli_close($con);
 
 ?>
