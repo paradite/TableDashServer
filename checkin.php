@@ -16,9 +16,8 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && (!empty($_POST["user_id"])) && (!e
 	if (!mysqli_query($con,$sql)) {
 		die('Error: ' . mysqli_error($con));
 	}else if (isset($DEBUG) && $DEBUG) echo("seat occupied\n");
-
-	include "log_activity.php";
 }
+include "log_activity.php";
 
 mysqli_close($con);
 ?>

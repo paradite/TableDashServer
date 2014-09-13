@@ -1,6 +1,6 @@
 <?php 
 	if (!isset($tag_id)) $tag_id="";
-	if (!isset($user_id)) $tag_id="";
+	if (!isset($user_id)) $user_id="";
 	if (!isset($duration)) $duration=0;
 	$activity = basename($_SERVER["SCRIPT_FILENAME"], '.php'); 
 	$sql = "REPLACE `dashtable`.`eventlog` (`timestamp`, `tag_id`, `user_id`, `activity`) VALUES (CURRENT_TIMESTAMP, '$tag_id', '$user_id', '$activity');";

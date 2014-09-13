@@ -10,9 +10,8 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && (!empty($_POST["user_id"]))) {
 	if (!mysqli_query($con,$sql)) {
 		die('Error: ' . mysqli_error($con));
 	}	elseif (isset($DEBUG) && $DEBUG) echo ('done checkout!');
-	include "log_activity.php";
-	
 }
+include "log_activity.php";
 
 mysqli_close($con);
 ?>
