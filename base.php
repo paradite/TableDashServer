@@ -2,6 +2,8 @@
 http_response_code(200);
 //var_dump(http_response_code());
 
+$DEBUG=false;
+
 class ArrayValue implements JsonSerializable {
 	public function __construct(array $array) {
 		$this->array = $array;
