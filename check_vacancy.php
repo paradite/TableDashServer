@@ -2,7 +2,7 @@
 include_once "base.php";
 //function check_vacancy(canteen_id)
 
-if (($_SERVER["REQUEST_METHOD"] == "POST") && (!empty($_POST["$canteen_id"]))) {
+if (($_SERVER["REQUEST_METHOD"] == "POST") && (!empty($_POST["canteen_id"]))) {
 	$canteen_id = mysqli_real_escape_string($con, $_POST['canteen_id']);
 	if (isset($DEBUG) && $DEBUG) echo($canteen_id);
 	$sql = "SELECT `tag_occupied_by_user`.`tag_id`, `tag_to_table`.`table_id`, `tag_occupied_by_user`.`timestamp_ending` 

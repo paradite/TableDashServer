@@ -16,6 +16,9 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && (!empty($_POST["user_id"])) && (!e
 	if (!mysqli_query($con,$sql)) {
 		die('Error: ' . mysqli_error($con));
 	}else if (isset($DEBUG) && $DEBUG) echo("seat occupied\n");
+
+	$sql = "CREATE EVENT e_totals ON CURRENT_TIMESTAMP + 100*$duration DO INSERT INTO test.totals VALUES (NOW());"
+
 }
 include "log_activity.php";
 
