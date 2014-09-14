@@ -21,11 +21,11 @@ INSERT INTO `dashtable`.`tag_occupied_by_user` (`tag_id`, `user_id`, `timestamp_
 PHP:
 $sql = "INSERT INTO `dashtable`.`tag_occupied_by_user` (`tag_id`, `user_id`, `timestamp_checkin`) VALUES (\'test_tag_1\', \'test_user_1\', CURRENT_TIMESTAMP);";
 
-updating eventlog
+updating activity_log
 SQL:
-INSERT INTO `dashtable`.`eventlog` (`timestamp`, `tag_id`, `user_id`) VALUES (CURRENT_TIMESTAMP, 'test_tag_1', 'test_user_1');
+INSERT INTO `dashtable`.`activity_log` (`timestamp`, `tag_id`, `user_id`) VALUES (CURRENT_TIMESTAMP, 'test_tag_1', 'test_user_1');
 PHP:
-$sql = "INSERT INTO `dashtable`.`eventlog` (`timestamp`, `tag_id`, `user_id`) VALUES (CURRENT_TIMESTAMP, \'test_tag_1\', \'test_user_1\');";
+$sql = "INSERT INTO `dashtable`.`activity_log` (`timestamp`, `tag_id`, `user_id`) VALUES (CURRENT_TIMESTAMP, \'test_tag_1\', \'test_user_1\');";
 
 
 
