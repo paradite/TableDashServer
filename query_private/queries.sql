@@ -1,4 +1,7 @@
 initialization:
+
+SET GLOBAL event_scheduler="ON"
+
 tag to table:
 SQL:
 INSERT INTO `dashtable`.`tag_to_table` (`tag_id`, `table_id`) VALUES ('test_tag_1', 'test_table_1');

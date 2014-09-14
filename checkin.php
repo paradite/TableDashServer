@@ -25,7 +25,11 @@ if (($_SERVER["REQUEST_METHOD"] == "POST") && (!empty($_POST["user_id"])) && (!e
 	include "log_activity.php";
 
 	$sql = "CREATE EVENT $user_id ON SCHEDULE AT CURRENT_TIMESTAMP + INTERVAL $duration MINUTE DO "
-	."UPDATE `dashtable`.`tag_occupied_by_user` SET `timestamp_ending` = CURRENT_TIMESTAMP, `user_id` = '' WHERE `tag_occupied_by_user`.`user_id` = '$user_id';";
+//	."BEGIN "
+	."UPDATE `dashtable`.`tag_occupied_by_user` SET `timestamp_ending` = CURRENT_TIMESTAMP, `user_id` = '' WHERE `tag_occupied_by_user`.`user_id` = '$user_id';"
+//	."DROP EVENT IF EXISTS $user_id;"
+//	."END "
+	;
 	if (!mysqli_query($con,$sql)) {
 		die('Error: ' . mysqli_error($con));
 	}	elseif (isset($DEBUG) && $DEBUG) echo ("done creating event!\n");
