@@ -29,8 +29,8 @@ ON `tag_occupied_by_user`.`tag_id`=`tag_to_table`.`tag_id`
 $replace = array ('"0"');
 echo preg_replace($patterns, $replace, json_encode(new ArrayValue(mysqli_fetch_all($result)), JSON_PRETTY_PRINT));
 // echo json_encode(new ArrayValue(mysqli_fetch_all($result)), JSON_PRETTY_PRINT);
-	echo(", [ [ \"".mysqli_num_rows($result)."\" ] ], "); //self-made json
-
+//	echo(", [ [ \"".mysqli_num_rows($result)."\" ] ], "); //self-made json
+echo (", ");
 $sql = "SELECT COUNT(*)
 FROM `tag_occupied_by_user` 
 INNER JOIN `tag_to_table` 
